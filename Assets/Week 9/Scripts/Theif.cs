@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Theif : Villager
@@ -10,9 +11,7 @@ public class Theif : Villager
     public Vector2 destinationPlaceholder;
     public float timer = 1;
     public bool CanAttack = true;
-    public float DashSpeed = 7;
-    bool isDashing;
-    public float timeee;
+    
     
     public override ChestType CanOpen()
     {
@@ -20,24 +19,39 @@ public class Theif : Villager
     }
 
     protected override void Attack()
-    {
-        if (CanAttack == true)
-        {
-            destination = transform.position;
-            base.Attack();
-            Instantiate(Dagger, SpawnPoint1.position, SpawnPoint1.rotation);
-            Instantiate(Dagger, SpawnPoint2.position, SpawnPoint2.rotation);
-            destinationPlaceholder = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            timer = 0.5f;
-        }
+    {   
+        StartCoroutine(Dash());
+        
         
 
+    }
+
+    IEnumerator Dash()
+    {
+    
+        
+        destination = transform.position;
+        destinationPlaceholder = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        destination = destinationPlaceholder;
+        speed = 10;
+        while (speed > 3)
+        {
+            yield return null;
+        }
+        base.Attack();
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(Dagger, SpawnPoint1.position, SpawnPoint1.rotation);
+        Instantiate(Dagger, SpawnPoint2.position, SpawnPoint2.rotation);
+
+
+            
+        
     }
 
     protected override void Update()
     {
         base.Update();
-        Timer();
+        //Timer();
     }
 
     public void Timer()
@@ -45,7 +59,7 @@ public class Theif : Villager
         if (timer > 0)
         {
             timer = timer - Time.deltaTime;
-            destination = destinationPlaceholder;
+            
             speed = 10;
             CanAttack = false;
         }
