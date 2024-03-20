@@ -10,6 +10,10 @@ public class Theif : Villager
     public Vector2 destinationPlaceholder;
     public float timer = 1;
     public bool CanAttack = true;
+    public float DashSpeed = 7;
+    bool isDashing;
+    public float timeee;
+    
     public override ChestType CanOpen()
     {
         return ChestType.Theif;
@@ -43,12 +47,19 @@ public class Theif : Villager
             timer = timer - Time.deltaTime;
             destination = destinationPlaceholder;
             speed = 10;
+            CanAttack = false;
         }
         else
         {
             speed = 3;
+            CanAttack = true;
 
         }
 
+    }
+
+    public override string ToString()
+    {
+        return "Hello bro";
     }
 }
