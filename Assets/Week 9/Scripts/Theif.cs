@@ -11,6 +11,7 @@ public class Theif : Villager
     public Vector2 destinationPlaceholder;
     public float timer = 1;
     public bool CanAttack = true;
+    Coroutine dashing;
     
     
     public override ChestType CanOpen()
@@ -20,10 +21,11 @@ public class Theif : Villager
 
     protected override void Attack()
     {   
-        StartCoroutine(Dash());
-        
-        
-
+        if (dashing != null)
+        {
+            StopCoroutine(dashing);
+        }
+        dashing = StartCoroutine(Dash());
     }
 
     IEnumerator Dash()
