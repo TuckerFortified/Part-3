@@ -20,7 +20,7 @@ public class BuildingScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
     }
@@ -29,12 +29,13 @@ public class BuildingScript : MonoBehaviour
     {
         while (timer < 1)
         {
-            building1.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, (timer % 10));
-            building2.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, (timer % 10));
-            building3.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, (timer % 10));
-            timer = timer + Time.deltaTime;
+            building1.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, (timer));
+            building2.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, (timer));
+            building3.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, (timer));
+            timer += Time.deltaTime;
+            yield return null;
         } 
-        yield return null;
+        
         
     }
 }
