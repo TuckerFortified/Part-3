@@ -8,8 +8,10 @@ using UnityEngine.UI;
 public class CharacterControl : MonoBehaviour
 {
 
+    public TMP_Dropdown dropdown;
     public TextMeshProUGUI Text;
     public static CharacterControl Instance;
+    public Villager[] array;
 
     private void Start()
     {
@@ -26,5 +28,12 @@ public class CharacterControl : MonoBehaviour
         SelectedVillager.Selected(true);
         CharacterControl.Instance.Text.text = villager.GetType().ToString();
     }
-    
+
+    public void ChangeSelected (int value)
+    {
+        Debug.Log(array[value]);
+        SetSelectedVillager(array[value]);
+        
+    }
+
 }
