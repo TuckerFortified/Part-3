@@ -6,7 +6,7 @@ public class CharacterController : MonoBehaviour
 {
     bool movingLeft = false;
     bool movingRight = false;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -18,6 +18,10 @@ public class CharacterController : MonoBehaviour
     public virtual void Update()
     {
         Movement();
+        if (Input.GetKeyDown("e"))
+        {
+            Ability();
+        }
     }
 
     //Function for player movement.
@@ -54,4 +58,13 @@ public class CharacterController : MonoBehaviour
         }
         
     }
+
+    //This function will be inherited by the child classes and will make the players abilities activate
+    public virtual void Ability()
+    {
+        movingLeft = false;
+        movingRight = false;
+    }
+
+
 }
