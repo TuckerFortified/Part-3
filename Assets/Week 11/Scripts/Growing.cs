@@ -14,17 +14,27 @@ public class Growing : MonoBehaviour
     public TextMeshProUGUI crTMP;
     public int running;
     Coroutine coroutine;
+    public bool scaling = true;
 
     void Start()
     {
-        StartCoroutine(Square());
-        StartCoroutine(Triangle());
-        StartCoroutine(Circle());
+        StartCoroutine(GrowingShapes());
     }
 
     void Update()
     {
         crTMP.text = "Coroutines: " + running.ToString();
+    }
+
+    IEnumerator GrowingShapes()
+    {
+        running += 1;
+        StartCoroutine(Square());
+        yield return new WaitForSeconds(1);
+        StartCoroutine(Triangle());
+        coroutine = StartCoroutine(Circle());
+        yield return coroutine;
+        running -= 1;
     }
 
     IEnumerator Square()
@@ -58,23 +68,25 @@ public class Growing : MonoBehaviour
     IEnumerator Circle()
     {
         running += 1;
-
         float size = 0;
-        while (size < 5)
+        while (scaling == true)
         {
-            size += Time.deltaTime;
-            Vector3 scale = new Vector3(size, size, size);
-            circle.transform.localScale = scale;
-            circleTMP.text = "Cirlce: " + scale;
-            yield return null;
-        }
-        while (size > 0)
-        {
-            size -= Time.deltaTime;
-            Vector3 scale = new Vector3(size, size, size);
-            circle.transform.localScale = scale;
-            circleTMP.text = "Cirlce: " + scale;
-            yield return null;  
+            while (size < 5)
+            {
+                size += Time.deltaTime;
+                Vector3 scale = new Vector3(size, size, size);
+                circle.transform.localScale = scale;
+                circleTMP.text = "Cirlce: " + scale;
+                yield return null;
+            }
+            while (size > 0)
+            {
+                size -= Time.deltaTime;
+                Vector3 scale = new Vector3(size, size, size);
+                circle.transform.localScale = scale;
+                circleTMP.text = "Cirlce: " + scale;
+                yield return null;
+            }
         }
         running -= 1;
     }
