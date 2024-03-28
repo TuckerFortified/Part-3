@@ -8,14 +8,14 @@ public class CharacterController : MonoBehaviour
     bool movingRight = false;
     public Rigidbody2D rb;
     public float count = 0;
-    // Start is called before the first frame update
+    
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
     }
 
-    // Update is called once per frame
+    
     public virtual void Update()
     {
         Movement();

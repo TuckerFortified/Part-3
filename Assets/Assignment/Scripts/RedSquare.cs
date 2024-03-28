@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class RedSquare : CharacterController
 {
-    public bool Switch = false;
-    // Start is called before the first frame update
+    //This is my static variable.
+    public static bool Switch = false;
+
+    
     public override void Start()
     {
         base.Start();
     }
 
-    // Update is called once per frame
+    
     public override void Update()
     {
         base.Update();
@@ -48,13 +50,14 @@ public class RedSquare : CharacterController
         count = 0;
         Switch = true;
         yield return null;
+        Switch = false;
         while (count < 2.5f)
         {
             
             count = count + Time.deltaTime;
             yield return null;
         }
-        Switch = false;
+        
         yield return null;
 
     }
