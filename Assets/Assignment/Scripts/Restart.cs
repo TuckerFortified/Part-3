@@ -11,4 +11,9 @@ public class Restart : MonoBehaviour
     {
         SceneManager.LoadScene("Assignment 3");
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        SceneManager.LoadScene("End Screen");
+    }
 }
