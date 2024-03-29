@@ -1194,6 +1194,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   count: 0
+  Swipe: {fileID: 86551106}
+  Hide: {fileID: 1303638437}
+  Show: {fileID: 183611321}
 --- !u!1 &804234289
 GameObject:
   m_ObjectHideFlags: 0
