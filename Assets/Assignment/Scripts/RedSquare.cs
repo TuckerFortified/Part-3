@@ -23,6 +23,9 @@ public class RedSquare : CharacterController
     {
         base.Start();
 
+        //Setting the framerate so the movement works right.
+        Application.targetFrameRate = 30;
+
         //Hiding the swipe image.
         Swipe.transform.position = Hide.transform.position;
 

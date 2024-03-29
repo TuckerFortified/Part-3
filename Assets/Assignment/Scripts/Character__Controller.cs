@@ -51,11 +51,11 @@ public class CharacterController : MonoBehaviour
         //This code actually moves the player.
         if (movingRight == true)
         {
-            rb.AddForce(transform.right * 10f);
+            rb.AddForce(transform.right * 15f);
         }
         if (movingLeft == true)
         {
-            rb.AddForce(-transform.right * 10f);
+            rb.AddForce(-transform.right * 15f);
         }
 
     }
